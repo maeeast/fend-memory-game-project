@@ -17,8 +17,12 @@ body {
 }
 
 body {
-    background: #ffffff url('../img/geometry2.png'); /* Background pattern from Subtle Patterns */
-    font-family: 'Coda', cursive;
+    background: #ffffff url('../img/silverGlitter.jpeg'); /* Background pattern from Subtle Patterns */
+    font-family: 'Bubblegum Sans', cursive;
+    font-weight: 900;
+    font-size: 30px;
+    color: #FFF;
+    text-shadow: 2px 2px 5px #000;
 }
 
 .container {
@@ -28,11 +32,6 @@ body {
     flex-direction: column;
 }
 
-h1 {
-    font-family: 'Open Sans', sans-serif;
-    font-weight: 300;
-}
-
 /*
  * Styles for the deck of cards
  */
@@ -40,7 +39,7 @@ h1 {
 .deck {
     width: 660px;
     min-height: 680px;
-    background: linear-gradient(160deg, #02ccba 0%, #aa7ecd 100%);
+    background: radial-gradient(#ffd6d6, #faffb0, #d0fff0, #e1bfff);
     padding: 32px;
     border-radius: 10px;
     box-shadow: 12px 15px 20px 0 rgba(46, 61, 73, 0.5);
@@ -54,7 +53,7 @@ h1 {
 .deck .card {
     height: 125px;
     width: 125px;
-    background: #2e3d49;
+    background: #2e3d49 url('../img/cardBack.png');
     font-size: 0;
     color: #ffffff;
     border-radius: 8px;
