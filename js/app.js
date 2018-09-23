@@ -5,6 +5,9 @@
 let selectedCards = [];
 let picks = 0;
 let pairs = 0;
+let timerOff = true;
+let time = 0;
+let timerId;
 
 /*
  * Display the cards on the page
@@ -40,7 +43,6 @@ function shuffle(array) {
  */
 
 const cards = document.querySelectorAll('.card');
-console.log(cards);
 const deck = document.querySelector('.deck');
 
 for (card of cards) {
@@ -57,8 +59,11 @@ deck.addEventListener('click', ()=>{
         if (selectedCards.length === 2) {
             areWeTwinning(clickTarget);
             addPick();
-            checkPicks();
-            console.log(picks);
+            checkPicks();;
+        }
+        if (timerOff) {
+            startTimer();
+            timerOff = false;
         }
     }
 });
@@ -83,7 +88,6 @@ function selectCard(clickTarget){
 
 function addSelectCard(clickTarget){
     selectedCards.push(clickTarget);
-    console.log(selectedCards);
 }
 
 function areWeTwinning() {
@@ -158,5 +162,27 @@ function refreshCards() {
     const   cards = document.querySelectorAll('.deck li');
     for (let card of cards) {
         card.className = 'card';
+    }
+}
+
+function startTimer(){
+    timerId = setInterval(() => {
+        time++;
+        showTime();
+    }, 1000);
+}
+
+function stopTimer(){
+    clearInterval(timerID)
+}
+
+function showTime(){
+    const timer = document.querySelector('.timer');
+    const minutes = Math.floor(time / 60);
+    const seconds = time % 60;
+    if (seconds < 10) {
+        timer.innerHTML = `${minutes}:0${seconds}`;
+    } else {
+        timer.innerHTML = `${minutes}:${seconds}`;
     }
 }
