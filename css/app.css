@@ -87,7 +87,11 @@ body {
  */
 
 .score-panel {
-    text-align: left;
+    display: flex;
+    justify-content: space-evenly;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 1.5rem;
     width: 345px;
     margin-bottom: 10px;
 }
@@ -105,11 +109,68 @@ body {
 }
 
 .score-panel .restart {
-    float: right;
     cursor: pointer;
 }
 
 .score-panel .timer {
     margin-right: 40px;
     float: left;
+}
+
+.results_background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.5);
+}
+
+.results_body {
+    position: relative;
+    width: 400px;
+    top: 50%;
+    left: 50%;
+    background: #fff;
+    transform: translate(-50%, -70%);
+}
+
+.results_heading {
+    color: #000;
+    display: flex;
+    text-shadow: none;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 1.5rem;
+    border-bottom: 1px solid gray;
+}
+
+.results_close {
+    font-weight: bold;
+    font-size: 2rem;
+}
+
+.results_list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem;
+    color: #000;
+    text-shadow: none;
+    border-bottom: 1px solid gray;
+}
+
+.results_buttons {
+    display: flex;
+    justify-content: space-around;
+    padding: 1rem;
+}
+
+.results_button {
+    width: 80px;
+    height: 30px;
+}
+
+.hide {
+    display: none;
 }

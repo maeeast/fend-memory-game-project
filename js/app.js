@@ -8,6 +8,7 @@ let pairs = 0;
 let timerOff = true;
 let time = 0;
 let timerId;
+const totalPairs = 8;
 
 /*
  * Display the cards on the page
@@ -185,4 +186,51 @@ function showTime(){
     } else {
         timer.innerHTML = `${minutes}:${seconds}`;
     }
+}
+
+function showResults () {
+    const results = document.querySelector('.results_background');
+    results.classList.toggle('hide');
+}
+
+function getResults () {
+    const timeStat = document.querySelector('.results_time');
+    const clockTime = document.querySelector('.clock').innerHTML;
+    const movesStat = document.querySelector('.modal_moves').innerHTML;
+    const starsStat = document.querySelector('.modal_stars').innerHTML;
+    const stars = getStars();
+
+    timeStat.innerHTML = `Time: ${clockTime}`;
+    movesStat.innerHTML = `Moves: ${moves}`;
+    starsStat.innerHTML = `Stars: ${stars}`;
+}
+
+function getStars() {
+    stars = document.querySelectorAll('.stars li');
+    starCount = 0;
+    for (star of stars) {
+        if (star.style.display !== "none"){
+            starCount++;
+        }
+    }
+    return starCount;
+}
+
+document.querySelector('.results_cancel').addEventListener('click', () => {
+    showResults();
+});
+
+document.querySelector('.results_try_again').addEventListener('click', () => {
+    refreshGame();
+    showResults();
+});
+
+if (pairs === totalPairs) {
+    allDone();
+}
+
+function allDone() {
+    stopTimer();
+    getResults();
+    showResults();
 }
