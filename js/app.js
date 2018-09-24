@@ -62,6 +62,9 @@ deck.addEventListener('click', ()=>{
             addPick();
             checkPicks();;
         }
+        if (pairs === totalPairs) {
+            allDone();
+        }
         if (timerOff) {
             startTimer();
             timerOff = false;
@@ -99,6 +102,7 @@ function areWeTwinning() {
         selectedCards[0].classList.toggle('match');
         selectedCards[1].classList.toggle('match');
         selectedCards = [];
+        pairs++;
     } else {
         setTimeout(() => {
             selectCard(selectedCards[0]);
@@ -173,10 +177,6 @@ function startTimer(){
     }, 1000);
 }
 
-function stopTimer(){
-    clearInterval(timerID)
-}
-
 function showTime(){
     const timer = document.querySelector('.timer');
     const minutes = Math.floor(time / 60);
@@ -188,21 +188,26 @@ function showTime(){
     }
 }
 
+function stopTimer(){
+    clearInterval(timerId);
+}
+
 function showResults () {
     const results = document.querySelector('.results_background');
     results.classList.toggle('hide');
 }
 
 function getResults () {
+    const clockTime = document.querySelector('.timer').innerHTML;
+    const score = getStars();
     const timeStat = document.querySelector('.results_time');
-    const clockTime = document.querySelector('.clock').innerHTML;
-    const movesStat = document.querySelector('.modal_moves').innerHTML;
-    const starsStat = document.querySelector('.modal_stars').innerHTML;
-    const stars = getStars();
+    const moveStat = document.querySelector('.results_moves');
+    const starStat = document.querySelector('.results_stars');
+
 
     timeStat.innerHTML = `Time: ${clockTime}`;
-    movesStat.innerHTML = `Moves: ${moves}`;
-    starsStat.innerHTML = `Stars: ${stars}`;
+    moveStat.innerHTML = `Moves: ${picks}`;
+    starStat.innerHTML = `Stars: ${score}`;
 }
 
 function getStars() {
@@ -216,7 +221,13 @@ function getStars() {
     return starCount;
 }
 
-document.querySelector('.results_cancel').addEventListener('click', () => {
+function allDone() {
+    stopTimer();
+    getResults();
+    showResults();
+}
+
+document.querySelector('.results_cancel, .results_close').addEventListener('click', () => {
     showResults();
 });
 
@@ -224,13 +235,3 @@ document.querySelector('.results_try_again').addEventListener('click', () => {
     refreshGame();
     showResults();
 });
-
-if (pairs === totalPairs) {
-    allDone();
-}
-
-function allDone() {
-    stopTimer();
-    getResults();
-    showResults();
-}

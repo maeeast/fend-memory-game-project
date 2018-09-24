@@ -127,6 +127,7 @@ body {
 }
 
 .results_body {
+    border-radius: 10px;
     position: relative;
     width: 400px;
     top: 50%;
@@ -164,11 +165,13 @@ body {
     display: flex;
     justify-content: space-around;
     padding: 1rem;
+    border-radius: 8px;
 }
 
 .results_button {
-    width: 80px;
+    width: 100px;
     height: 30px;
+    font-family: 'Special Elite', cursive;
 }
 
 .hide {
